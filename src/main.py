@@ -2,6 +2,8 @@ from fastapi import FastAPI, HTTPException, Depends
 from apscheduler.schedulers.background import BackgroundScheduler
 from apscheduler.triggers.cron import CronTrigger
 from .service import CobaltService
+from . import schemas
+from typing import List
 import uvicorn
 import os
 from dotenv import load_dotenv
@@ -53,12 +55,12 @@ app = FastAPI(title="CobaltGuard API (钴价格监测系统)", lifespan=lifespan
 def read_root():
     return {"message": "CobaltGuard API 正在运行。"}
 
-@app.get("/api/v1/prices")
+@app.get("/api/v1/prices", response_model=List[schemas.CobaltPriceResponse])
 def get_prices(limit: int = 10):
     """查询历史价格数据列表"""
     return service.get_prices(limit)
 
-@app.get("/api/v1/prices/{date_str}")
+@app.get("/api/v1/prices/{date_str}", response_model=schemas.CobaltPriceResponse)
 def get_price_by_date(date_str: str):
     """按日期查询具体价格"""
     price = service.get_price_by_date(date_str)
