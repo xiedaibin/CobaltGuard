@@ -1,0 +1,12 @@
+# playwright==1.41.0 (Removed to reduce image size)
+fastapi==0.109.0
+uvicorn==0.27.0
+sqlalchemy==2.0.25
+requests==2.31.0
+beautifulsoup4==4.12.2
+apscheduler==3.10.4
+matplotlib==3.8.2
+python-dotenv==1.0.1
+pandas==2.2.0
+httpx==0.26.0
+pydantic-settings==2.1.0

@@ -1,0 +1,15 @@
+services:
+  cobalt-guard:
+    build: .
+    container_name: cobalt-guard
+    restart: always
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+    env_file:
+      - .env
+    environment:
+      - DATABASE_URL=sqlite:///./data/cobalt.db
+      - TZ=Asia/Shanghai

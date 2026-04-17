@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  cobalt-guard:
+    image: registry.cn-hangzhou.aliyuncs.com/xdb/cobalt-guard:latest
+    container_name: cobalt-guard
+    restart: always
+    ports:
+      - "8000:8000"
+    volumes:
+      # 生产环境建议使用相对路径或绝对路径指向宿主机存储
+      - ./data:/app/data
+      - ./logs:/app/logs
+    env_file:
+      - .env
+    environment:
+      - TZ=Asia/Shanghai
+      - DATABASE_URL=sqlite:///./data/cobalt.db
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"

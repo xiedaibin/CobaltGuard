@@ -1,0 +1,57 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# 虚拟环境
+venv/
+.venv/
+env/
+ENV/
+
+# 环境变量 (包含敏感信息)
+.env
+.env.*
+!.env.example
+!.env.*.example
+# 递归忽略所有子目录下的 .env 文件
+**/.env
+**/.env.*
+!**/.env.example
+!**/.env.*.example
+
+# 数据库与本地数据
+data/*.db
+data/*.sqlite
+data/charts/
+data/reports/
+
+# 日志
+logs/
+*.log
+
+# 临时文件
+scratch/
+.pytest_cache/
+.coverage
+htmlcov/
+.ipynb_checkpoints/
+
+# IDE & 编辑器
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# 操作系统
+.DS_Store
+Thumbs.db
+
+# 部署与脚本相关
+push_aliyun.bat
+# 如果 deploy 目录下有敏感配置，确保被忽略
+deploy/.env
+deploy/.env.*
+!deploy/.env.example

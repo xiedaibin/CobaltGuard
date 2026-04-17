@@ -1,0 +1,12 @@
+venv/
+.env
+__pycache__/
+*.db
+data/charts/*
+data/cobalt.db
+.git/
+.vscode/
+.gemini/
+tests/
+test_*.py
+!test_init.py
