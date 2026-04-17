@@ -5,12 +5,13 @@
 ## 阶段一：FastAPI - 现代化的 Web 框架
 - [x] **1.1 自动文档初探** ([点击查看详情](./01_FastAPI_Basics.md#01-fastapi-自动文档初探-swagger-ui))
 - [x] **1.2 Pydantic 类型校验** ([点击查看详情](./01_FastAPI_Basics.md#02-pydantic-类型校验))
-- [ ] **1.3 异步支持 (Async/Await)**
+- [x] **1.3 异步支持 (Async/Await)** ([点击查看详情](./01_FastAPI_Basics.md#03-异步支持-asyncawait))
 
 ## 阶段二：SQLAlchemy - 数据库 ORM 真经
-- [ ] **2.1 模型与映射 (Models)**
-- [ ] **2.2 Session 会话管理**
-- [ ] **2.3 复杂查询逻辑**
+- [x] **2.1 模型与映射 (Models)** ([点击查看详情](./02_SQLAlchemy_ORM.md#02-核心组件拆解-srcdatabasepy))
+- [x] **2.2 Alembic 数据库迁移** ([点击查看详情](./03_Alembic_Migrations.md))
+- [ ] **2.3 Session 会话管理**
+- [ ] **2.4 复杂查询逻辑**
 
 ## 阶段三：APScheduler - 系统的“心跳”
 - [ ] **3.1 任务调度类型 (Triggers)**

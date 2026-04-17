@@ -22,7 +22,8 @@ class CobaltPrice(Base):
     price_date = Column(String, unique=True, index=True)  # 日期格式: YYYY-MM-DD
     price = Column(Float, nullable=False)                # 价格（元/吨）
     raw_text = Column(String)                           # 抓取到的原始文本内容
-    created_at = Column(DateTime, server_default=func.now()) # 记录创建时间
+    created_at = Column(DateTime, server_default=func.now()) # 记录创建时间 
+    #comment = Column(String, nullable=True)
 
 def init_db():
     """初始化数据库表"""

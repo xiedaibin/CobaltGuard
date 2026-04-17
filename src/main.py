@@ -58,7 +58,10 @@ def read_root():
 @app.get("/api/v1/prices", response_model=List[schemas.CobaltPriceResponse])
 def get_prices(limit: int = 10):
     """查询历史价格数据列表"""
-    return service.get_prices(limit)
+    result = service.get_prices(limit)
+    logger.info(f"查询历史价格数据列表，limit: {limit}, result: {[p.__dict__ for p in result]}")
+    logger.info(f"查询历史价格数据列表2，limit: {limit}, result: {[schemas.CobaltPriceResponse.from_orm(p).dict() for p in result]}")
+    return result
 
 @app.get("/api/v1/prices/{date_str}", response_model=schemas.CobaltPriceResponse)
 def get_price_by_date(date_str: str):
@@ -81,4 +84,5 @@ def trigger_report():
     return {"status": "报表生成任务已触发。"}
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    # 使用字符串路径并开启 reload=True
+    uvicorn.run("src.main:app", host="0.0.0.0", port=8000, reload=True)
