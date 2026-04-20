@@ -105,7 +105,15 @@ class FeishuNotifier:
         try:
             resp = requests.post(self.webhook_url, json=payload)
             resp.raise_for_status()
-            logger.info("文本消息已发送至飞书。")
+            data = resp.json()
+            
+            # 检查业务错误码
+            code = data.get("code") if data.get("code") is not None else data.get("StatusCode")
+            if code == 0:
+                logger.info("文本消息已发送至飞书。")
+            else:
+                msg = data.get("msg") or data.get("StatusMessage") or "未知错误"
+                logger.error(f"文本消息下发失败 (业务错误) - 错误码: {code}, 原因: {msg}")
         except Exception as e:
             logger.error(f"发送文本消息时出错: {e}")
 
@@ -164,9 +172,20 @@ class FeishuNotifier:
         try:
             resp = requests.post(self.webhook_url, json=payload)
             resp.raise_for_status()
-            logger.info("交互式卡片已发送至飞书。")
+            data = resp.json()
+            
+            # 检查业务错误码
+            code = data.get("code") if data.get("code") is not None else data.get("StatusCode")
+            if code == 0:
+                logger.info(f"交互式卡片已发送至飞书 - 标题: {title}")
+            else:
+                msg = data.get("msg") or data.get("StatusMessage") or "未知错误"
+                logger.error(f"卡片消息下发失败 (业务错误) - 错误码: {code}, 原因: {msg}")
+                # 记录 Payload 用于后续调试（去掉敏感信息）
+                debug_payload = {k: v for k, v in payload.items() if k not in ["sign", "timestamp"]}
+                logger.debug(f"失败的 Payload 内容: {json.dumps(debug_payload, ensure_ascii=False)}")
         except Exception as e:
-            logger.error(f"发送卡片消息时出错: {e}")
+            logger.error(f"发送卡片消息时发生网络异常: {e}")
 
 if __name__ == "__main__":
     # 测试文本消息
