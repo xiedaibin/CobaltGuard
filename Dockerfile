@@ -33,8 +33,9 @@ RUN mkdir -p /usr/share/fonts/truetype/wqy && \
     cp /app/src/fonts/wqy-zenhei.ttc /usr/share/fonts/truetype/wqy/ && \
     fc-cache -fv
 
-COPY data/ /app/data/
-COPY logs/ /app/logs/
+# 确保必要的运行时目录存在（不依赖宿主机路径）
+RUN mkdir -p /app/data /app/logs
+
 COPY test_init.py /app/test_init.py
 
 # 8. 设置持久化卷
