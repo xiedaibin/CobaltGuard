@@ -29,10 +29,27 @@ def init_db():
     """初始化数据库表"""
     Base.metadata.create_all(bind=engine)
 
+from contextlib import contextmanager
+
 def get_db():
-    """获取数据库会话的依赖项"""
+    """获取数据库会话的依赖项 (用于 FastAPI 依赖注入)"""
     db = SessionLocal()
     try:
         yield db
+    finally:
+        db.close()
+
+@contextmanager
+def session_scope():
+    """上下文管理器，用于在非请求流程中安全管理 Session。
+    用法: with session_scope() as db: ...
+    """
+    db = SessionLocal()
+    try:
+        yield db
+        db.commit()
+    except Exception:
+        db.rollback()
+        raise
     finally:
         db.close()

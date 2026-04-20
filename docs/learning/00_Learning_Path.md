@@ -10,7 +10,7 @@
 ## 阶段二：SQLAlchemy - 数据库 ORM 真经
 - [x] **2.1 模型与映射 (Models)** ([点击查看详情](./02_SQLAlchemy_ORM.md#02-核心组件拆解-srcdatabasepy))
 - [x] **2.2 Alembic 数据库迁移** ([点击查看详情](./03_Alembic_Migrations.md))
-- [ ] **2.3 Session 会话管理**
+- [x] **2.3 Session 会话管理** <!-- ([点击查看详情](./02_SQLAlchemy_ORM.md#03-高级会话管理-session-scope)) -->
 - [ ] **2.4 复杂查询逻辑**
 
 ## 阶段三：APScheduler - 系统的“心跳”
